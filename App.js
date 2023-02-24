@@ -1,9 +1,13 @@
 import 'react-native-gesture-handler';
-import { Text, View } from 'react-native';
-import Main from './src/components/Main';
+import { Provider } from 'react-redux';
+
+import store from './src/redux/store'
+import FullStackNavigator from './src/routes/FullStackNavigator';
 
 export default function App() {
   return (
-    <Main/>
+    <Provider store={store}>
+      <FullStackNavigator/>
+    </Provider>
   );
 }
