@@ -21,14 +21,8 @@ const FullStackNavigator = () => {
             headerTintColor: 'white',
           }}
         >
-          <FullStack.Screen 
-            name="Maquinas" 
-            component={MachineStackNavigator} 
-          />
-          <FullStack.Screen 
-            name="Personal" 
-            component={PersonalStackNavigator} 
-          />
+          <FullStack.Screen name="Maquinas" component={MachineStackNavigator}/>
+          <FullStack.Screen name="Personal" component={PersonalStackNavigator} />
         </FullStack.Navigator>
       </NavigationContainer>
     </View>
@@ -38,7 +32,6 @@ const FullStackNavigator = () => {
 //Tema del SideBar
 
 const MyTheme = {
-  dark: false,
   colors: {
     primary: 'rgb(125, 157, 156)',
     card: 'rgba(50,59,68,255)',

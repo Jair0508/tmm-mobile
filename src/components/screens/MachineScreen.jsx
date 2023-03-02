@@ -7,7 +7,7 @@ import { useNavigation } from "@react-navigation/native";
 const MachineScreen = () => {
 
   const navigation = useNavigation()
-
+  const text = 'MÁQUINAS'
   const [visit,setVisit] = useState(true)
 
   const pressMachine = () => {
@@ -22,21 +22,6 @@ const MachineScreen = () => {
     navigation.navigate('About')
   }
 
-  const infoObjects = [
-    {
-      id:1,
-      title:'izaje',
-      content: ['puente grua','izar componenete pesados'],
-      image: '../../assets/image1.jpg'
-    },
-    {
-      id:2,
-      title:'alambre',
-      content: ['monblock', 'otro definicion'],
-      image: '../../assets/image2.jpg'
-    }
-  ]
-
   return (
     <Carousel>
       <View className="flex-1">
@@ -45,14 +30,14 @@ const MachineScreen = () => {
           {
             visit ? (
               <TouchableOpacity onPress={pressMachine}>
-                <Text className="text-black font-bold text-5xl text-center">
-                  Metalizado
+                <Text className="text-white font-bold text-6xl text-center bg-blue-500 rounded p-4">
+                  {text}
                 </Text>
               </TouchableOpacity>
             ) : (
               <View>
-                <TouchableOpacity onPress={goToCheckList} 
-                className="rounded-xl border-solid border-4 
+                <TouchableOpacity onPress={goToCheckList}
+                  className="rounded-xl border-solid border-4 
                         border-gray-800 bg-white
                         p-2 m-5">
                   <Text className="text-black font-bold text-5xl text-center">
@@ -60,7 +45,7 @@ const MachineScreen = () => {
                   </Text>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={goToAbout}
-                className="rounded-xl border-solid border-4 
+                  className="rounded-xl border-solid border-4 
                           border-gray-800 bg-white
                           p-2 m-5">
                   <Text className="text-black font-bold text-5xl text-center">
@@ -68,7 +53,7 @@ const MachineScreen = () => {
                   </Text>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={pressMachine}
-                className="rounded-xl border-solid border-4 
+                  className="rounded-xl border-solid border-4 
                           border-gray-800 bg-white
                           p-2 m-5">
                   <Text className="text-black font-bold text-5xl text-center">
@@ -80,16 +65,86 @@ const MachineScreen = () => {
           }
         </View>
       </View>
-      <View style={styles.slide}>
-        <ImageBackground style={styles.image} source={require('../../assets/image2.jpg')} resizeMode="cover" />
-        <View style={styles.textContainer}>
-          <Text style={styles.text}>SEGUNDA IMG</Text>
+      <View className="flex-1">
+        <ImageBackground className="flex-1 justify-center" source={require('../../assets/image2.jpg')} />
+        <View className="absolute left-0 right-0 top-0 bottom-0 justify-center">
+          {
+            visit ? (
+              <TouchableOpacity onPress={pressMachine}>
+                <Text className="text-white font-bold text-6xl text-center bg-blue-500 rounded p-4">
+                  {text}
+                </Text>
+              </TouchableOpacity>
+            ) : (
+              <View>
+                <TouchableOpacity onPress={goToCheckList}
+                  className="rounded-xl border-solid border-4 
+                        border-gray-800 bg-white
+                        p-2 m-5">
+                  <Text className="text-black font-bold text-5xl text-center">
+                    Checklist
+                  </Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={goToAbout}
+                  className="rounded-xl border-solid border-4 
+                          border-gray-800 bg-white
+                          p-2 m-5">
+                  <Text className="text-black font-bold text-5xl text-center">
+                    Acerca De..
+                  </Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={pressMachine}
+                  className="rounded-xl border-solid border-4 
+                          border-gray-800 bg-white
+                          p-2 m-5">
+                  <Text className="text-black font-bold text-5xl text-center">
+                    NOE
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            )
+          }
         </View>
       </View>
-      <View style={styles.slide}>
-        <ImageBackground style={styles.image} source={require('../../assets/image3.jpg')} />
-        <View style={styles.textContainer}>
-          <Text style={styles.text}>TERCERA IMG</Text>
+      <View className="flex-1">
+        <ImageBackground className="flex-1 justify-center" source={require('../../assets/image3.jpg')} />
+        <View className="absolute left-0 right-0 top-0 bottom-0 justify-center">
+          {
+            visit ? (
+              <TouchableOpacity onPress={pressMachine}>
+                <Text className="text-white font-bold text-6xl text-center bg-blue-500 rounded p-4">
+                  {text}
+                </Text>
+              </TouchableOpacity>
+            ) : (
+              <View>
+                <TouchableOpacity onPress={goToCheckList}
+                  className="rounded-xl border-solid border-4 
+                        border-gray-800 bg-white
+                        p-2 m-5">
+                  <Text className="text-black font-bold text-5xl text-center">
+                    Checklist
+                  </Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={goToAbout}
+                  className="rounded-xl border-solid border-4 
+                          border-gray-800 bg-white
+                          p-2 m-5">
+                  <Text className="text-black font-bold text-5xl text-center">
+                    Acerca De..
+                  </Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={pressMachine}
+                  className="rounded-xl border-solid border-4 
+                          border-gray-800 bg-white
+                          p-2 m-5">
+                  <Text className="text-black font-bold text-5xl text-center">
+                    NOE
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            )
+          }
         </View>
       </View>
     </Carousel>

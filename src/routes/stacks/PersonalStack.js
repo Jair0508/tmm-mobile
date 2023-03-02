@@ -6,12 +6,7 @@ const PersonalStack = createNativeStackNavigator();
 
 const PersonalStackNavigator = () => {
   return (
-    <PersonalStack.Navigator
-      screenOptions={{
-        //headerTintColor: '#444',
-        //headerStyle: { backgroundColor: '#eee', height: 60 }
-      }}
-    >
+    <PersonalStack.Navigator>
       <PersonalStack.Screen
         name='Personal'
         component={PersonalScreen}

@@ -2,6 +2,7 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 import { NavigationContainer, } from "@react-navigation/native";
 import React from "react";
 import { View, StatusBar } from "react-native";
+
 import Calendario from "./Calendario";
 import Maquinas from "./Maquinas";
 import Personal from "./Personal";
