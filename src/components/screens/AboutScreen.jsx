@@ -1,7 +1,6 @@
 import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { View, Text, Button, TouchableHighlight } from "react-native";
-import tailwind from 'tailwind-rn';
 
 
 const AboutScreen = () => {
@@ -15,7 +14,7 @@ const AboutScreen = () => {
     <View className="flex-1 ">
       <View>
         <TouchableHighlight>
-          <Text style={tailwind('text-lg font-bold text-red-500')} >TECNICO</Text>
+          <Text>TECNICO</Text>
         </TouchableHighlight>
         <TouchableHighlight>
           <Text>CABINA</Text>
