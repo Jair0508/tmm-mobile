@@ -1,7 +1,7 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
 import AboutScreen from "../../components/screens/AboutScreen";
 import CheckListScreen from "../../components/screens/CheckListScreen";
-import MachineScreen from "../../components/screens/MachineScreen";
+import HomeScreen from "../../components/screens/HomeScreen";
 
 const MachineStack = createNativeStackNavigator();
 
@@ -14,8 +14,8 @@ const MachineStackNavigator = () => {
       }}
     >
       <MachineStack.Screen
-        name='Machine'
-        component={MachineScreen}
+        name='Home'
+        component={HomeScreen}
         options={{
           headerShown: false
         }}/>
