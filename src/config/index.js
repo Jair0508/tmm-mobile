@@ -1,0 +1,1 @@
+export const BASE_URL = 'https://tmmback-production.up.railway.app/'
