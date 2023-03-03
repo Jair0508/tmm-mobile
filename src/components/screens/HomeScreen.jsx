@@ -27,11 +27,15 @@ const HomeScreen = () => {
   }
 
   const goToCheckList = () => {
-    navigation.navigate('CheckList', { id: machineSetelected.id })
+    console.log("gotocheck")
+    let idMachine = machineSetelected.id
+    navigation.navigate('CheckList', { idMachine })
   }
 
   const goToAbout = () => {
-    navigation.navigate('About', { id: machineSetelected.id })
+    console.log("asdasd")
+    let idMachine = machineSetelected.id
+    navigation.navigate('About', { idMachine })
   }
 
   return (

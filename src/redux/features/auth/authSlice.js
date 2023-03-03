@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { login } from '../../actions/authActions'
 
 const initialState = {
   user: null,
@@ -15,7 +16,19 @@ export const authSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: {
-    
+    //Login
+    [login.pending]: (state) => {
+      state.isLoading = true
+      state.error = false
+    },
+    [login.fulfilled]: (state,{ payload }) => {
+      state.isLoading = false
+      state.user = payload
+    },
+    [login.rejected]: (state, { payload }) => {
+      state.isLoading = false
+      state.errorResponse = payload
+    },
   }
 })
 

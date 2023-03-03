@@ -4,39 +4,34 @@ import { useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { View, Text, Switch, Button, TouchableOpacity } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import { getSections } from "../../redux/actions/machineActions";
-import { selectMachines, selectSections } from "../../redux/features/machine/machineSlice";
+import { getSections, getSubSections } from "../../redux/actions/machineActions";
+import { selectSubSections } from "../../redux/features/machine/machineSlice";
 import CustomIndicator from "../CustomIndicator";
 
-const AboutScreen = () => {
+const SectionScreen = () => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
   const router = useRoute();
 
-  const { control, handleSubmit, formState: { errors } } = useForm();
-  const { idMachine } = router.params;
+  const { idSection } = router.params;
 
   const machineState = useSelector((state) => state.machine)
-  const sections = useSelector((state) => selectSections(state))
+  const subSections = useSelector((state) => selectSubSections(state))
 
   useEffect(() => {
     const params = {
-      idMachine: idMachine
+      idSection: idSection
     }
-    dispatch(getSections(params))
+    dispatch(getSubSections(params))
   }, [])
 
 
-  const goToSection = (section) =>{
-    if (section.have_subsection) {
-      let idSection = section.id
-      navigation.navigate('Section',{ idSection })
-    } else {
-      let type = 'section'
-      let idModel = section.id
-      navigation.navigate('Info',{ type, idModel })
-    }
+  const goToInfo = (subSection) =>{
+    let type = 'seubsection'
+    let idModel = subSection.id
+    navigation.navigate('Info', { type, idModel })
   }
+
   
   return (
     <View className="flex-1">
@@ -44,16 +39,16 @@ const AboutScreen = () => {
         machineState.isLoading ? (
           <CustomIndicator />
         ) : (
-          sections.map((section,index) => 
+          subSections.map((subSection,index) => 
           (
           <TouchableOpacity 
             key={"s_" + String(index)}
-            onPress={() => goToSection(section)} 
+            onPress={ () => goToInfo(subSection) } 
             className="rounded-xl border-solid border-4 
                     border-gray-800 bg-white
                     p-2 m-5">
             <Text className="text-black font-bold text-5xl text-center">
-              {section.name}
+              {subSection.name}
             </Text>
           </TouchableOpacity>
           ))
@@ -63,4 +58,4 @@ const AboutScreen = () => {
   );
 };
 
-export default AboutScreen;
+export default SectionScreen;
