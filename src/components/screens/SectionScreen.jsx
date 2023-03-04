@@ -27,7 +27,7 @@ const SectionScreen = () => {
 
 
   const goToInfo = (subSection) =>{
-    let type = 'seubsection'
+    let type = 'subsection'
     let idModel = subSection.id
     navigation.navigate('Info', { type, idModel })
   }

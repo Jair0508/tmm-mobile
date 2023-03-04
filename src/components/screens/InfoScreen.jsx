@@ -22,6 +22,8 @@ const InfoScreen = () => {
     dispatch(getInfo({type, idModel}))
   },[])
 
+  console.log(listInfo)
+
   const goToDetail = (info) => {
     navigation.navigate('Detail',{ info })
   }
@@ -34,13 +36,27 @@ const InfoScreen = () => {
           <CustomIndicator />
         ) : (
           listInfo.map((info,index) => 
-          (
-          <Text 
-          key={"info_" + String(index)}
-          className="text-black font-bold text-5xl text-center">
-            { info.title }
-          </Text>
-          ))
+            (
+            <View
+              key={"info_" + String(index)}
+            >
+              <View>
+                
+              </View>
+              <Text 
+                className="text-black font-bold text-xl text-center">
+                { info.title }
+              </Text>
+              
+              <Text 
+                className="text-black font-light text-xl text-center">
+                { info.subtitle }
+              </Text>
+
+            </View>
+            
+            )
+          )
         )
       }
     </View>

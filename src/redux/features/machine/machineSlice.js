@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { getMachines, getSections, getSubSections } from '../../actions/machineActions'
+import { getInfo, getMachines, getSections, getSubSections } from '../../actions/machineActions'
 
 const initialState = {
   machines: [],
@@ -16,6 +16,7 @@ export const machineSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: {
+    //Get Machines
     [getMachines.pending] : (state) => {
       state.isLoading = true
       state.machines = []
@@ -30,6 +31,7 @@ export const machineSlice = createSlice({
       state.error = true
       state.errorResponse = payload
     },
+    //Get Sections
     [getSections.pending] : (state) => {
       state.isLoading = true
       state.sections = []
@@ -44,6 +46,7 @@ export const machineSlice = createSlice({
       state.error = true
       state.errorResponse = payload
     },
+    //Get Subsections
     [getSubSections.pending] : (state) => {
       state.isLoading = true
       state.subsections = []
@@ -55,6 +58,21 @@ export const machineSlice = createSlice({
     [getSubSections.rejected]: (state, { payload }) => {
       state.isLoading = false
       state.subsections = []
+      state.error = true
+      state.errorResponse = payload
+    },
+    //Get Infos
+    [getInfo.pending] : (state) => {
+      state.isLoading = true
+      state.listInfo = []
+    },
+    [getInfo.fulfilled]: (state, { payload }) => {
+      state.isLoading = false
+      state.listInfo = payload
+    },
+    [getInfo.rejected]: (state, { payload }) => {
+      state.isLoading = false
+      state.listInfo = []
       state.error = true
       state.errorResponse = payload
     }
