@@ -14,7 +14,12 @@ const initialState = {
 export const authSlice = createSlice({
   name: 'auth',
   initialState,
-  reducers: {},
+  reducers: {
+    logoutUser: (state,action) => {
+      state.user = null
+      state.token = null
+    }
+  },
   extraReducers: {
     //Login
     [login.pending]: (state) => {
@@ -24,6 +29,7 @@ export const authSlice = createSlice({
     [login.fulfilled]: (state,{ payload }) => {
       state.isLoading = false
       state.user = payload
+      state.token = 'dljfnasldfnj'
     },
     [login.rejected]: (state, { payload }) => {
       state.isLoading = false
@@ -32,5 +38,6 @@ export const authSlice = createSlice({
   }
 })
 
+export const { logoutUser } = authSlice.actions
 
 export default authSlice.reducer

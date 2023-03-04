@@ -1,7 +1,24 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, TextInput, Image } from 'react-native';
+import { TouchableOpacity } from 'react-native';
+import { Button } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Image, Touchable } from 'react-native';
+import { useDispatch, useSelector } from "react-redux";
+import { login } from '../../redux/actions/authActions'
+
 
 const Login = () => {
+  const dispatch = useDispatch();
+
+  let dataUser = {
+    username: 'aaa',
+    email: 'emaik',
+    password: 'asdasd'
+  }
+
+  const loginPress = () => {
+    dispatch(login(dataUser));
+  }
+
   return (
     <View style={styles.container}>
       {/* <Image
@@ -11,11 +28,29 @@ const Login = () => {
       <View style>
         <Text style={styles.title}>MECANIZADO Y METALIZADO</Text>
       </View>
-      <TextInput style={styles.textInput} placeholder='Ingresa tu nombre completo.' />
-      <TextInput style={styles.textInput} placeholder='Ingresa tu correo electrónico.' />
-      <TextInput style={styles.textInput} placeholder='Ingresa tu clave.' secureTextEntry={true} />
-      <Text  style={styles.forgot}>Olvidaste tu contraseña?</Text>
-      <Text  style={styles.forgot}>Privacidad</Text>
+      <TextInput 
+        style={styles.textInput} 
+        placeholder='Ingresa tu nombre completo.' />
+      <TextInput 
+        style={styles.textInput} 
+        placeholder='Ingresa tu correo electrónico.' />
+      <TextInput 
+        style={styles.textInput} 
+        placeholder='Ingresa tu clave.' 
+        secureTextEntry={true} />
+      <Text 
+        style={styles.forgot}>
+          Olvidaste tu contraseña?
+      </Text>
+      <Text 
+        style={styles.forgot}>
+          Privacidad
+      </Text>
+      <TouchableOpacity onPress={() => loginPress()}>
+        <Text>
+          Iniciar Sesion
+        </Text>
+      </TouchableOpacity>
       <StatusBar translucent />
     </View>
   );
