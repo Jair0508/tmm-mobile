@@ -14,6 +14,8 @@ const MachineStackNavigator = () => {
       screenOptions={{
         //headerTintColor: '#444',
         //headerStyle: { backgroundColor: '#eee', height: 60 }
+        header: () => null,
+        headerShown: false,
       }}
     >
       <MachineStack.Screen
@@ -32,7 +34,7 @@ const MachineStackNavigator = () => {
         name='About'
         component={AboutScreen}
         options={{
-          headerShown: false
+          title: 'Acerca de'
         }}/>
       <MachineStack.Screen
         name='Section'
