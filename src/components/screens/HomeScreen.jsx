@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Text, View, ImageBackground, TouchableHighlight, TouchableOpacity } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import { Text, View, ImageBackground, TouchableHighlight, TouchableOpacity, TouchableWithoutFeedback, Modal, Alert } from "react-native";
+import { DrawerActions, useNavigation } from '@react-navigation/native';
 import { useDispatch, useSelector } from "react-redux";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import Carousel from "pinar";
 
 import { getMachines } from "../../redux/actions/machineActions";
 import { selectMachines } from "../../redux/features/machine/machineSlice";
+
 import CustomIndicator from "../CustomIndicator";
 
 const HomeScreen = () => {
@@ -15,7 +17,7 @@ const HomeScreen = () => {
   const machineState = useSelector((state) => state.machine)
   const machines = useSelector((state) => selectMachines(state));
   const [machineSetelected,setMachineSelected] = useState({})
-  const [visit, setVisit] = useState(false)
+  const [visit, setVisit] = useState(false);
 
   useEffect(() => {
     dispatch(getMachines({}))
@@ -27,17 +29,45 @@ const HomeScreen = () => {
   }
 
   const goToCheckList = () => {
+    setVisit(!visit)
     let idMachine = machineSetelected.id
     navigation.navigate('CheckList', { idMachine })
   }
 
   const goToAbout = () => {
+    setVisit(!visit)
+    navigation.navigate('About', machineSetelected)
+  }
+
+  const goToNoe = () => {
+    setVisit(!visit)
     let idMachine = machineSetelected.id
     navigation.navigate('About', { idMachine })
   }
 
+  const openMenu = () => {
+    navigation.dispatch(DrawerActions.openDrawer());
+  }
+
+
   return (
     <View className="flex-1">
+      {/* Header */}
+      <View className="flex-row py-2 items-center space-x-2 bg-slate-200">
+        <TouchableOpacity
+          onPress={openMenu}
+          className="bg-slate-100 rounded-full p-2 ml-2 mr-2"
+        >
+          <MaterialCommunityIcons
+            name="menu"
+            size={25}
+          ></MaterialCommunityIcons>
+        </TouchableOpacity>
+        <View className="flex-1 items-start">
+          <Text className="font-bold text-xl">Maquinas</Text>
+        </View>
+      </View>
+      {/* Body */}
       {
         machineState.isLoading ? (
           <CustomIndicator />
@@ -51,58 +81,90 @@ const HomeScreen = () => {
           {
             machines.map((machine, index) => 
               (
-                <View className="flex-1" key={"m_" + String(index)}>
+                <View  
+                className="flex-1" key={"m_" + String(index)}>
                   <ImageBackground 
                     className="flex-1 justify-center" 
                     source={{uri: machine.url_image}} />
                   <View 
                     className="absolute left-0 right-0 top-0 bottom-0 justify-center">
-                    {
-                      visit ? (
-                        <TouchableOpacity onPress={() => pressVisit(machine)}
-                        className="w-full bg-white pb-2 mb-2">
-                          <Text 
-                          className="text-black outline-white outline-2 font-bold text-3xl text-center mt-2">
-                            {machine.title}
-                          </Text>
-                        </TouchableOpacity>
-                      ) : (
-                        <View>
-                          <TouchableOpacity onPress={goToCheckList} 
-                          className="rounded-xl border-solid border-4 
-                                  border-gray-800 bg-white
-                                  p-2 m-5">
-                            <Text className="text-black font-bold text-5xl text-center">
-                              Checklist
-                            </Text>
-                          </TouchableOpacity>
-                          <TouchableOpacity onPress={goToAbout}
-                          className="rounded-xl border-solid border-4 
-                                    border-gray-800 bg-white
-                                    p-2 m-5">
-                            <Text className="text-black font-bold text-5xl text-center">
-                              Acerca De..
-                            </Text>
-                          </TouchableOpacity>
-                          <TouchableOpacity onPress={() => pressVisit(machine)}
-                          className="rounded-xl border-solid border-4 
-                                    border-gray-800 bg-white
-                                    p-2 m-5">
-                            <Text className="text-black font-bold text-5xl text-center">
-                              NOE
-                            </Text>
-                          </TouchableOpacity>
-                        </View>
-                      )
-                    }
+                    <TouchableOpacity onPress={() => pressVisit(machine)}
+                      className="w-full bg-white pb-2 mb-2">
+                      <Text 
+                      className="text-black outline-white outline-2 font-bold text-3xl text-center mt-2">
+                        {machine.title}
+                      </Text>
+                    </TouchableOpacity>
                   </View>
-                </View>
+                </View >
               )
             )
           }
           </Carousel>
         )
       }
+      <Modal
+        animationType="fade"
+        transparent={true}
+        visible={visit}
+        onRequestClose={() => {
+          setVisit(!visit)
+        }}>
+          <View 
+          className="flex-1 rounded-2xl bg-slate-400 m-auto my-32" 
+          style={{
+            shadowColor: '#000',
+            shadowOffset: {
+              width: 0,
+              height: 2,
+            },
+            shadowOpacity: 0.25,
+            shadowRadius: 4,
+            elevation: 5,
+          }}>
+            {/* Header */}
+            <View className="flex-row rounded-t-2xl py-2 items-center space-x-2 bg-slate-200">
+              <View className="flex-1 items-center ml-3">
+                <Text className="font-bold text-2xl">Opciones</Text>
+              </View>
+              <TouchableOpacity
+                onPress={()=>{setVisit(!visit)}}
+                className="bg-slate-100 rounded-full p-2 ml-2 mr-2 items-end"
+              >
+                <MaterialCommunityIcons
+                  name="close"
+                  size={25}
+                ></MaterialCommunityIcons>
+              </TouchableOpacity>
+            </View>
+            <View className="flex-1 justify-center p-0 m-0">
+              <TouchableOpacity onPress={goToCheckList}
+                className="rounded-xl border-solid border-4 
+                        border-gray-800 bg-white
+                        p-2 m-5">
+                <Text className="text-black font-bold text-4xl text-center">
+                  Checklist
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={goToAbout}
+              className="rounded-xl border-solid border-4 
+                        border-gray-800 bg-white
+                        p-2 m-5">
+                <Text className="text-black font-bold text-4xl text-center">
+                  Acerca de
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={goToNoe}
+              className="rounded-xl border-solid border-4 
+                        border-gray-800 bg-white
+                        p-2 m-5">
+                <Text className="text-black font-bold text-4xl text-center">
+                  NOE
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+      </Modal>
     </View>
   )
 };
