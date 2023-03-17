@@ -1,13 +1,12 @@
 import { useNavigation, useRoute } from "@react-navigation/native";
 import React from "react";
 import { useEffect } from "react";
-import { useForm, Controller } from "react-hook-form";
-import { View, Text, Switch, Button, TouchableOpacity, ScrollView } from "react-native";
+import { View, Text, TouchableOpacity, ScrollView } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
 import { getSections } from "../../redux/actions/machineActions";
-import { selectMachines, selectSections } from "../../redux/features/machine/machineSlice";
+import { selectSections } from "../../redux/features/machine/machineSlice";
 
 import CustomIndicator from "../CustomIndicator";
 
@@ -16,7 +15,6 @@ const AboutScreen = () => {
   const navigation = useNavigation();
   const router = useRoute();
 
-  const { control, handleSubmit, formState: { errors } } = useForm();
   const { id, title } = router.params;
 
   const machineState = useSelector((state) => state.machine)
@@ -36,7 +34,8 @@ const AboutScreen = () => {
     } else {
       let type = 'section';
       let idModel = section.id;
-      navigation.navigate('Info',{ type, idModel });
+      let titleInfo = section.name;
+      navigation.navigate('Info',{ type, idModel, titleInfo });
     }
   }
 

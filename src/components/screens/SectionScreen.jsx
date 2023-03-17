@@ -29,9 +29,10 @@ const SectionScreen = () => {
 
 
   const goToInfo = (subSection) =>{
-    let type = 'subsection'
-    let idModel = id
-    navigation.navigate('Info', { type, idModel })
+    let type = 'subsection';
+    let idModel = subSection.id;
+    let titleInfo = subSection.name;
+    navigation.navigate('Info', { type, idModel, titleInfo })
   }
 
   const backPage = () => {

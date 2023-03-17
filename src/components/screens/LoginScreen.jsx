@@ -38,19 +38,22 @@ const Login = () => {
         style={styles.textInput} 
         placeholder='Ingresa tu clave.' 
         secureTextEntry={true} />
+      <TouchableOpacity onPress={() => loginPress()} className="p-2 bg-slate-600 rounded-lg my-3 mb-5">
+        <Text className="text-xl font-bold text-center text-white ">
+          INGRESAR
+        </Text>
+        </TouchableOpacity>
+        
       <Text 
+      className="text-blue-500"
         style={styles.forgot}>
           Olvidaste tu contraseña?
       </Text>
       <Text 
+      className="text-blue-500"
         style={styles.forgot}>
           Privacidad
       </Text>
-      <TouchableOpacity onPress={() => loginPress()}>
-        <Text>
-          Iniciar Sesion
-        </Text>
-      </TouchableOpacity>
       <StatusBar translucent />
     </View>
   );
@@ -81,7 +84,7 @@ const styles = StyleSheet.create({
 
   forgot: {
     color: '#693532',
-    textAlign: 'right',
+    textAlign: 'left',
   },
 
   textInput:{ 

@@ -1,4 +1,5 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
+import PersonalInfoScreen from "../../components/screens/PersonalInfoScreen";
 
 import PersonalScreen from "../../components/screens/PersonalScreen";
 
@@ -8,8 +9,14 @@ const PersonalStackNavigator = () => {
   return (
     <PersonalStack.Navigator>
       <PersonalStack.Screen
-        name='Personal'
+        name='PersonalList'
         component={PersonalScreen}
+        options={{
+          headerShown: false
+        }}/>
+      <PersonalStack.Screen
+        name='PersonalInfo'
+        component={PersonalInfoScreen}
         options={{
           headerShown: false
         }}/>

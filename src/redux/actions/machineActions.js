@@ -95,7 +95,6 @@ export const getInfo = createAsyncThunk(
         `/api/machine/info-api`,
         { params: params }
       );
-      console.log(params)
       return response.data
     } catch (error) {
       console.log(error)
