@@ -32,7 +32,7 @@ export const getSections = createAsyncThunk(
   async ({ idMachine }, {rejectWithValue}) => {
     try {
       const params = {
-        id_machime: idMachine
+        id_machine: idMachine
       }
       const response = await customAxios.get(
         `/api/machine/section-api`,
@@ -97,7 +97,30 @@ export const getInfo = createAsyncThunk(
       );
       return response.data
     } catch (error) {
-      console.log(error)
+      if (error.response && error.response.data.detail) {
+        if (error.response.status == 401) {
+          ToastAndroid.show(
+            'Error 401 ',
+            ToastAndroid.LONG
+          )
+        }
+        return rejectWithValue(error.response.data.detail)
+      } else {
+        return rejectWithValue(error.message)
+      }
+    }
+  }
+)
+
+export const getIncidents = createAsyncThunk(
+  "machine/incidents",
+  async ({ }, {rejectWithValue}) => {
+    try {
+      const response = await customAxios.get(
+        `/api/machine/incidents-api`,
+      );
+      return response.data
+    } catch (error) {
       if (error.response && error.response.data.detail) {
         if (error.response.status == 401) {
           ToastAndroid.show(

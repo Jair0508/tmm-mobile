@@ -51,6 +51,11 @@ const InfoScreen = () => {
       {
         machineState.isLoading ? (
           <CustomIndicator />
+        ) : listInfo.length == 0 ? (
+          <Text className="text-center text-red-500 text-xl my-2">
+            {" "}
+            No hay información{" "}
+          </Text>
         ) : (
           <ScrollView>
             {

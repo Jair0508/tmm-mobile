@@ -27,7 +27,6 @@ const SectionScreen = () => {
     dispatch(getSubSections(params))
   }, [])
 
-
   const goToInfo = (subSection) =>{
     let type = 'subsection';
     let idModel = subSection.id;
@@ -60,6 +59,11 @@ const SectionScreen = () => {
       {
         machineState.isLoading ? (
           <CustomIndicator />
+        ) : subSections.length == 0 ? (
+          <Text className=" text-center text-red-500 text-xl my-2">
+            {" "}
+            No hay secciones{" "}
+          </Text>
         ) : (
           <ScrollView className="my-auto">
             {

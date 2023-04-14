@@ -5,6 +5,7 @@ import HomeScreen from "../../components/screens/HomeScreen";
 import SectionScreen from "../../components/screens/SectionScreen";
 import InfoScreen from "../../components/screens/InfoScreen";
 import DetailScreen from "../../components/screens/DetailScreen";
+import EppsScreen from "../../components/screens/EppsScreen";
 
 const MachineStack = createNativeStackNavigator();
 
@@ -51,6 +52,12 @@ const MachineStackNavigator = () => {
       <MachineStack.Screen
         name='Detail'
         component={DetailScreen}
+        options={{
+          headerShown: false
+        }}/>
+      <MachineStack.Screen
+        name='Epps'
+        component={EppsScreen}
         options={{
           headerShown: false
         }}/>

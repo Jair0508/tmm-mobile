@@ -23,12 +23,6 @@ const PersonalScreen = () => {
     dispatch(getProfiles({}))
   },[])
 
-  console.log(profiles)
-
-  const onSubmit = data => {
-    console.log(data);
-  };
-
   const goToBack = () =>{
     navigation.goBack()
   }

@@ -1,11 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { getInfo, getMachines, getSections, getSubSections } from '../../actions/machineActions'
+import { getInfo, getMachines, getSections, getSubSections, getIncidents } from '../../actions/machineActions'
 
 const initialState = {
   machines: [],
   sections: [],
   subsections: [],
   listInfo: [],
+  listIncidents: [],
   isLoading: false,
   error: false,
   errorResponse: null
@@ -75,7 +76,22 @@ export const machineSlice = createSlice({
       state.listInfo = []
       state.error = true
       state.errorResponse = payload
-    }
+    },
+    //Get Incidents
+    [getIncidents.pending] : (state) => {
+      state.isLoading = true
+      state.listIncidents = []
+    },
+    [getIncidents.fulfilled]: (state, { payload }) => {
+      state.isLoading = false
+      state.listIncidents = payload
+    },
+    [getIncidents.rejected]: (state, { payload }) => {
+      state.isLoading = false
+      state.listIncidents = []
+      state.error = true
+      state.errorResponse = payload
+    },
   }
 })
 
@@ -92,5 +108,7 @@ export const selectSections = (state) => state.machine.sections
 export const selectSubSections = (state) => state.machine.subsections
 
 export const selectInfo = (state) => state.machine.listInfo
+
+export const selectIncidents = (state) => state.machine.listIncidents
 
 export default machineSlice.reducer

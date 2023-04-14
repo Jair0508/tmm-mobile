@@ -5,15 +5,18 @@ import customAxios from "../axios";
 
 export const getForm = createAsyncThunk(
   "form/info",
-  async ({ codeForm }, {rejectWithValue}) => {
+  async ({ id_user, codeForm }, {rejectWithValue}) => {
     try {
       const response = await customAxios.get(
-        `/form/` + codeForm +`/full_form`
+        `/form/` + codeForm +`/full_form`,
+        {
+          params: {
+            id_user: id_user
+          }
+        }
       );
-      console.log(response.data)
       return response.data
     } catch (error) {
-      console.log("error", error)
       if (error.response && error.response.data.detail) {
         if (error.response.status == 401) {
           ToastAndroid.show(
@@ -34,8 +37,8 @@ export const submitForm = createAsyncThunk(
   async ({ body }, {rejectWithValue}) => {
     try {
       const response = await customAxios.post(
-        `/form/submit-form-api`,
-        { body: body }
+        `/form/submit_form`,
+         body 
       );
       return response.data
     } catch (error) {

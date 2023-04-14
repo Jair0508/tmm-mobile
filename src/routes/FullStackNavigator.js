@@ -10,6 +10,9 @@ import MachineStackNavigator from "./stacks/MachineStack";
 import PersonalStackNavigator from "./stacks/PersonalStack";
 
 import { logoutUser } from "../redux/features/auth/authSlice"
+import CalendarStackNavigator from "./stacks/CalendarStack";
+import NoeStackNavigator from "./stacks/NoeStack";
+import MoreInfoStackNavigator from "./stacks/MoreInfoStack";
 
 const FullStack = createDrawerNavigator();
 
@@ -76,6 +79,15 @@ const FullStackNavigator = () => {
       <FullStack.Screen 
         name="Personal" 
         component={PersonalStackNavigator} />
+      <FullStack.Screen 
+        name="Calendar" 
+        component={CalendarStackNavigator} />
+      <FullStack.Screen 
+        name="Noe" 
+        component={NoeStackNavigator} />
+      <FullStack.Screen 
+        name="More" 
+        component={MoreInfoStackNavigator} />
     </FullStack.Navigator>
   )
 }

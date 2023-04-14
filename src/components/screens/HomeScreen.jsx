@@ -26,7 +26,7 @@ const HomeScreen = () => {
   const machineState = useSelector((state) => state.machine);
   const machines = useSelector((state) => selectMachines(state));
   
-  const [machineSetelected, setMachineSelected] = useState({});
+  const [machineSelected, setMachineSelected] = useState({});
   const [visit, setVisit] = useState(false);
 
   useEffect(() => {
@@ -40,17 +40,17 @@ const HomeScreen = () => {
 
   const goToCheckList = () => {
     setVisit(!visit);
-    navigation.navigate("CheckList", machineSetelected);
+    navigation.navigate("CheckList", machineSelected);
   };
 
   const goToAbout = () => {
     setVisit(!visit);
-    navigation.navigate("About", machineSetelected);
+    navigation.navigate("About", machineSelected);
   };
 
   const goToEPPS = () => {
     setVisit(!visit);
-    navigation.navigate("About", machineSetelected);
+    navigation.navigate("Epps", machineSelected);
   };
 
   const openMenu = () => {
@@ -143,29 +143,34 @@ const HomeScreen = () => {
             </TouchableOpacity>
           </View>
           <View className="flex-1 justify-center p-0 m-0">
-            <TouchableOpacity
-              onPress={goToEPPS}
-              className="rounded-xl border-solid border-4 
-                        border-gray-800 bg-white
-                        p-2 m-5"
-            >
-              <Text className="text-black font-bold text-4xl text-center">
-                EPPS
-              </Text>
-            </TouchableOpacity>
-            {machineSetelected.code_form && (
-              <TouchableOpacity
-                onPress={goToCheckList}
-                className="rounded-xl border-solid border-4 
-                        border-gray-800 bg-white
-                        p-2 m-5"
-              >
-                <Text className="text-black font-bold text-4xl text-center">
-                  CheckList
-                </Text>
-              </TouchableOpacity>
-            )}
-
+            {
+              machineSelected.url_epp && (
+                <TouchableOpacity
+                  onPress={goToEPPS}
+                  className="rounded-xl border-solid border-4 
+                            border-gray-800 bg-white
+                            p-2 m-5"
+                >
+                  <Text className="text-black font-bold text-4xl text-center">
+                    EPPS
+                  </Text>
+                </TouchableOpacity>
+              )
+            }
+            {
+              machineSelected.code_form && (
+                <TouchableOpacity
+                  onPress={goToCheckList}
+                  className="rounded-xl border-solid border-4 
+                          border-gray-800 bg-white
+                          p-2 m-5"
+                >
+                  <Text className="text-black font-bold text-4xl text-center">
+                    CheckList
+                  </Text>
+                </TouchableOpacity>
+              )
+            }
             <TouchableOpacity
               onPress={goToAbout}
               className="rounded-xl border-solid border-4 

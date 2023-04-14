@@ -6,7 +6,7 @@ import { Text, View } from "react-native";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import { useDispatch } from "react-redux";
 
-const CalendarScreen = () => {
+const MoreInfoScreen = () => {
 
   const dispatch = useDispatch();
   const navigation = useNavigation();
@@ -29,12 +29,12 @@ const CalendarScreen = () => {
           ></MaterialCommunityIcons>
         </TouchableOpacity>
         <View className="flex-1 items-start">
-          <Text className="font-bold text-xl">Calendario</Text>
+          <Text className="font-bold text-xl">Más..</Text>
         </View>
       </View>
-      <Text>CALENDARIO</Text>
+      <Text>Más Información</Text>
     </View >
   )
 }
 
-export default CalendarScreen
+export default MoreInfoScreen

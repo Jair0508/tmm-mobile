@@ -27,7 +27,6 @@ const AboutScreen = () => {
     dispatch(getSections(params))
   }, [])
 
-
   const goToSection = (section) =>{
     if (section.have_subsection) {
       navigation.navigate('Section',section);
@@ -63,6 +62,11 @@ const AboutScreen = () => {
       {
         machineState.isLoading ? (
           <CustomIndicator />
+        ) : sections.length == 0 ? (
+          <Text className="text-center text-red-500 text-xl my-2">
+            {" "}
+            No tiene secciones {" "}
+          </Text>
         ) : (
           <ScrollView className="my-auto">
             {

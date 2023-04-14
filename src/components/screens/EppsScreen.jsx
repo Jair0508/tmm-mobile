@@ -11,18 +11,12 @@ import Video from "react-native-video";
 import WebView from "react-native-webview";
 import { ScrollView } from "react-native";
 
-const DetailScreen = () => {
+const EppsScreen = () => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
   const router = useRoute();
 
-  const { info } = router.params;
-
-  const { id, title, subtitle, content, url_image, video_link } = info;
-
-  const machineState = useSelector((state) => state.machine);
-  const subSections = useSelector((state) => selectSubSections(state));
-  
+  const { title, url_epp } = router.params;
 
   const backPage = () => {
     navigation.goBack()
@@ -47,17 +41,15 @@ const DetailScreen = () => {
       </View>
       {/* Body */}
       <View className="flex-1">
-        <WebView source={{uri: video_link }} style={{ marginTop: 20 }}/>
+        <Image 
+          style={{ width: '100%', height: '100%' }} 
+          source={{uri: url_epp}}
+        />
       </View>
-      <ScrollView className="flex-1 p-5">
-        <Text className="font-bold text-2xl">{title}</Text>
-        <Text className="font-semibold text-lg">{subtitle}</Text>
-        <Text className="font-medium text-sm">{content}</Text>
-      </ScrollView>
     </View>
   );
 };
 
 
 
-export default DetailScreen;
+export default EppsScreen;

@@ -3,21 +3,32 @@ import { TouchableOpacity } from 'react-native';
 import { Button } from 'react-native';
 import { StyleSheet, Text, View, TextInput, Image, Touchable } from 'react-native';
 import { useDispatch, useSelector } from "react-redux";
-import { login } from '../../redux/actions/authActions'
+import { login, logout } from '../../redux/actions/authActions'
+import { useState } from 'react';
+import { useEffect } from 'react';
+import { logoutUser } from '../../redux/features/auth/authSlice';
 
 
 const Login = () => {
   const dispatch = useDispatch();
 
-  let dataUser = {
-    username: 'aaa',
-    email: 'emaik',
-    password: 'asdasd'
+  const initialData = {
+    username: '',
+    email: '',
+    password: ''
   }
+
+  const [dataUser, setDataUser] = useState(initialData)
+  const authState = useSelector(state => state.auth); 
 
   const loginPress = () => {
     dispatch(login(dataUser));
   }
+
+  useEffect(() => {
+    dispatch(logoutUser())
+    //dispatch(logout({}))
+  }, [])
 
   return (
     <View style={styles.container}>
@@ -30,12 +41,18 @@ const Login = () => {
       </View>
       <TextInput 
         style={styles.textInput} 
+        value={dataUser.username}
+        onChangeText={text => setDataUser({...dataUser, username: text })}
         placeholder='Ingresa tu nombre completo.' />
       <TextInput 
         style={styles.textInput} 
+        value={dataUser.email}
+        onChangeText={text => setDataUser({...dataUser, email: text })}
         placeholder='Ingresa tu correo electrónico.' />
       <TextInput 
         style={styles.textInput} 
+        value={dataUser.password}
+        onChangeText={text => setDataUser({...dataUser , password: text})}
         placeholder='Ingresa tu clave.' 
         secureTextEntry={true} />
       <TouchableOpacity onPress={() => loginPress()} className="p-2 bg-slate-600 rounded-lg my-3 mb-5">
