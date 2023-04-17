@@ -31,7 +31,7 @@ const DetailScreen = () => {
   return (
     <View className="flex-1">
       {/* Header */}
-      <View className="flex-row py-2 items-center space-x-2 bg-slate-200">
+      <View className="flex-row py-2 items-center space-x-2 bg-black">
         <TouchableOpacity
           onPress={backPage}
           className="bg-slate-100 rounded-full p-2 ml-2 mr-2"
@@ -42,16 +42,27 @@ const DetailScreen = () => {
           ></MaterialCommunityIcons>
         </TouchableOpacity>
         <View className="flex-1 items-start">
-          <Text className="font-bold text-lg">{title}</Text>
+          <Text className="font-bold text-lg text-white">{title}</Text>
         </View>
       </View>
       {/* Body */}
-      <View className="flex-1">
-        <WebView source={{uri: video_link }} style={{ marginTop: 20 }}/>
-      </View>
-      <ScrollView className="flex-1 p-5">
-        <Text className="font-bold text-2xl">{title}</Text>
-        <Text className="font-semibold text-lg">{subtitle}</Text>
+      {
+        video_link ? (
+          <View className="flex-1">
+            <WebView source={{uri: video_link }} style={{ marginTop: 20 }}/>
+          </View>
+        ) : (
+          <View className="flex-1">
+            <Image 
+              style={{ width: 'auto', height: '100%', aspectRatio: 1, alignSelf: 'center'}} 
+                source={{ uri: url_image }} />
+          </View>
+        )
+      }
+      
+      <ScrollView className="flex-1 p-5 bg-[#e8e8e8]">
+        {/*<Text className="text-black font-bold text-3xl text-center">{title}</Text>*/}
+        <Text className="font-semibold text-lg underline">{subtitle}</Text>
         <Text className="font-medium text-sm">{content}</Text>
       </ScrollView>
     </View>

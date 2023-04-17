@@ -8,8 +8,8 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 
 import CustomIndicator from "../CustomIndicator";
 
-import { getForm, submitForm } from "../../redux/actions/formActions";
-import { selectForm } from "../../redux/features/form/formSlice";
+import { getForm, sendForm, submitForm } from "../../redux/actions/formActions";
+import { selectForm, selectResponses } from "../../redux/features/form/formSlice";
 import { selectUser } from "../../redux/features/auth/authSlice";
 
 const CheckListScreen = () => {
@@ -22,6 +22,7 @@ const CheckListScreen = () => {
   const formObjectState = useSelector((state) => state.form)
   const detailForm = useSelector((state) => selectForm(state))
   const userInfo = useSelector((state) => selectUser(state))
+  const responsesCode = useSelector((state) => selectResponses(state))
   const [formQuestions, setFormQuestions] = useState([])
 
   useEffect(() => {
@@ -37,6 +38,12 @@ const CheckListScreen = () => {
       setFormQuestions(detailForm.questions)
     }
   },[detailForm])
+
+  useEffect(() => {
+    if (responsesCode) {
+      sendResponses()
+    }
+  }, [responsesCode])
 
   const backPage = () => {
     navigation.goBack()
@@ -57,12 +64,7 @@ const CheckListScreen = () => {
 
   const submitFullForm = (body) => {
     dispatch(submitForm({body}))
-    detailForm.validate_response = true
-    backPage();
-    ToastAndroid.show(
-      'Gracias por las respuestas',
-      ToastAndroid.LONG
-    )
+    //backPage();
   }
 
   const buildBody = () => {
@@ -112,8 +114,15 @@ const CheckListScreen = () => {
     )
   }
 
-  const openResponses  = () => {
-    console.log("open-responses")
+  const sendResponses = () => {
+    let codeResponse = responsesCode
+    if (detailForm.validate_response.status) {
+      codeResponse = detailForm.validate_response.responses_code
+    }
+    let body = {
+      responses_code: codeResponse,
+    }
+    dispatch(sendForm({body}))
   }
 
 
@@ -143,7 +152,7 @@ const CheckListScreen = () => {
   return (
     <View className="flex-1">
       {/* Header */}
-      <View className="flex-row py-2 items-center space-x-2 bg-slate-200">
+      <View className="flex-row py-2 items-center space-x-2 bg-black">
         <TouchableOpacity
           onPress={backPage}
           className="bg-slate-100 rounded-full p-2 ml-2 mr-2"
@@ -154,7 +163,7 @@ const CheckListScreen = () => {
           ></MaterialCommunityIcons>
         </TouchableOpacity>
         <View className="flex-1 items-start">
-          <Text className="font-bold text-lg">CheckList - {title}</Text>
+          <Text className="font-bold text-lg text-white">CHECKLIST - {title}</Text>
         </View>
       </View>
       {/* Body  */}
@@ -162,28 +171,32 @@ const CheckListScreen = () => {
         formObjectState.isLoading ? (
           <CustomIndicator />
         ) : (
-          detailForm.validate_response ? (
+          detailForm.validate_response.status || responsesCode ? (
             <View className="flex-1 m-4">
               <Text className="text-center font-medium text-2xl pb-2">
-                Ya contestaste este checklist, ¿Quieres revisar tus respuestas?
+                Ya contestaste este checklist, ¿Enviar las respuestas?
               </Text>
-              <Button title="Ver respuestas" onPress={openResponses} />
+              <Button title="Enviar respuestas" onPress={sendResponses} />
             </View>
           ) : (
             <ScrollView className="my-auto">
               <View className="flex-1 px-4">
-                {/*<View className="rounded-lg bg-black text-center m-2">
-                  <Text className="text-white text-center p-1 text-lg font-extrabold">
-                    1.- PERSONAL
-                  </Text>
-                </View>
-                */}
                 {
                   formQuestions.length > 0 ? (
                     <View className="flex-1">
                       {
                         formQuestions.map((obj_question,index_question) => (
+                          
                           <View key={"q_" + String(index_question)}>
+                            {
+                              obj_question.validate_label && (
+                                <View className="rounded-lg bg-black text-center m-2">
+                                  <Text className="text-white text-center p-1 text-lg font-extrabold">
+                                    { obj_question.validate_label }
+                                  </Text>
+                                </View>
+                              )
+                            }
                             <Text className="text-center font-bold text-lg">
                               { obj_question.question }
                             </Text>
@@ -247,7 +260,7 @@ const CheckListScreen = () => {
       }
       {/* Footer */}
       {
-        !detailForm.validate_response && (
+        !(detailForm.validate_response.status || responsesCode) && (
           <View className="px-4 pb-4">
             <Button title="Enviar" onPress={onSubmit} disabled={formObjectState.isLoading}/>
           </View>

@@ -3,6 +3,7 @@ import { Text, View, TouchableOpacity, ImageBackground } from "react-native";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import { ScrollView } from "react-native";
+import { Image } from "react-native";
 
 const PersonalInfoScreen = () => {
   const navigation = useNavigation();
@@ -18,7 +19,7 @@ const PersonalInfoScreen = () => {
   return (
     <View className="flex-1">
       {/* Header */}
-      <View className="flex-row py-2 items-center space-x-2 bg-slate-200">
+      <View className="flex-row py-2 items-center space-x-2 bg-black">
         <TouchableOpacity
           onPress={backPage}
           className="bg-slate-100 rounded-full p-2 ml-2 mr-2"
@@ -29,7 +30,9 @@ const PersonalInfoScreen = () => {
           ></MaterialCommunityIcons>
         </TouchableOpacity>
         <View className="flex-1 items-start">
-          <Text className="font-bold text-lg">{personalInfo.data_user.full_name}</Text>
+          <Text className="font-bold text-lg text-white">
+            { personalInfo.data_user.full_name }
+          </Text>
         </View>
       </View>
       {/* Body */}
@@ -37,8 +40,8 @@ const PersonalInfoScreen = () => {
         <View className="m-2 flex-1">
           {
             personalInfo.url_image && (
-              <ImageBackground
-                className="flex-1"
+              <Image
+                style={{ width: 'auto', height: '100%', aspectRatio: 1, alignSelf: 'center'}}
                 source={{ uri: personalInfo.url_image }}
               />
             )

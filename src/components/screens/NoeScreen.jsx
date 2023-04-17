@@ -30,7 +30,7 @@ const NoeScreen = () => {
   return (
     <View className="flex-1">
       {/* Header */}
-      <View className="flex-row py-2 items-center space-x-2 bg-slate-200">
+      <View className="flex-row py-2 items-center space-x-2 bg-black">
         <TouchableOpacity
           onPress={openMenu}
           className="bg-slate-100 rounded-full p-2 ml-2 mr-2"
@@ -41,7 +41,7 @@ const NoeScreen = () => {
           ></MaterialCommunityIcons>
         </TouchableOpacity>
         <View className="flex-1 items-start">
-          <Text className="font-bold text-xl">NOE</Text>
+          <Text className="font-bold text-xl text-white">NOE</Text>
         </View>
       </View>
       {/* Body */}
@@ -70,11 +70,11 @@ const NoeScreen = () => {
                 <View className="flex-1" key={"inc_" + String(index)}>
                   <View className="flex-1">
                     <Image 
-                      style={{ width: '100%', height: '100%' }} 
+                      style={{ width: 'auto', height: '100%', aspectRatio: 1, alignSelf: 'center'}}
                       source={{ uri: incident.url_image }} />
                   </View>
                   <View className="flex-1 mb-10">
-                    <ScrollView className="p-5">
+                    <ScrollView className="p-5 bg-[#e8e8e8]">
                       <Text className="font-bold text-2xl">{incident.title}</Text>
                       <Text className="font-semibold text-lg">{incident.subtitle}</Text>
                       <Text className="font-medium text-sm">{incident.content}</Text>

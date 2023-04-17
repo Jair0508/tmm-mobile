@@ -42,7 +42,7 @@ const PersonalScreen = () => {
   return (
     <View className="flex-1">
       {/* Header */}
-      <View className="flex-row py-2 items-center space-x-2 bg-slate-200">
+      <View className="flex-row py-2 items-center space-x-2 bg-black">
         <TouchableOpacity
           onPress={openMenu}
           className="bg-slate-100 rounded-full p-2 ml-2 mr-2"
@@ -53,7 +53,7 @@ const PersonalScreen = () => {
           ></MaterialCommunityIcons>
         </TouchableOpacity>
         <View className="flex-1 items-start">
-          <Text className="font-bold text-xl">Lista de Personal</Text>
+          <Text className="font-bold text-xl text-white">PERSONAL</Text>
         </View>
       </View>
       {/* Body */}
@@ -73,7 +73,8 @@ const PersonalScreen = () => {
               {
                 profile.url_image && (
                   <ImageBackground
-                    className="flex-1 justify-center"
+                    //className="flex-1 justify-center"
+                    style={{ width: 'auto', height: '100%', aspectRatio: 1, alignSelf: 'center'}}
                     source={{ uri: profile.url_image }}
                   />
                 )

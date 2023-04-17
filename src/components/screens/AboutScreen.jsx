@@ -45,7 +45,7 @@ const AboutScreen = () => {
   return (
     <View className="flex-1">
       {/* Header */}
-      <View className="flex-row py-2 items-center space-x-2 bg-slate-200">
+      <View className="flex-row py-2 items-center space-x-2 bg-black">
         <TouchableOpacity
           onPress={backPage}
           className="bg-slate-100 rounded-full p-2 ml-2 mr-2"
@@ -56,7 +56,7 @@ const AboutScreen = () => {
           ></MaterialCommunityIcons>
         </TouchableOpacity>
         <View className="flex-1 items-start">
-          <Text className="font-bold text-lg">{title}</Text>
+          <Text className="font-bold text-lg text-white">{title}</Text>
         </View>
       </View>
       {
@@ -68,7 +68,8 @@ const AboutScreen = () => {
             No tiene secciones {" "}
           </Text>
         ) : (
-          <ScrollView className="my-auto">
+          <ScrollView
+          contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', backgroundColor: '#979ca0' }}>
             {
               sections.map((section,index) => 
               (
@@ -76,9 +77,9 @@ const AboutScreen = () => {
                 key={"s_" + String(index)}
                 onPress={() => goToSection(section)} 
                 className="rounded-xl border-solid border-4 
-                        border-gray-800 bg-white
+                        border-white bg-slate-900
                         pt-3 pb-1 m-5">
-                <Text className="text-black font-bold text-5xl text-center">
+                <Text className="text-amber-400 font-bold text-5xl text-center">
                   {section.name}
                 </Text>
               </TouchableOpacity>

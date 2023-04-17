@@ -42,7 +42,7 @@ const SectionScreen = () => {
   return (
     <View className="flex-1">
       {/* Header */}
-      <View className="flex-row py-2 items-center space-x-2 bg-slate-200">
+      <View className="flex-row py-2 items-center space-x-2 bg-black">
         <TouchableOpacity
           onPress={backPage}
           className="bg-slate-100 rounded-full p-2 ml-2 mr-2"
@@ -53,7 +53,7 @@ const SectionScreen = () => {
           ></MaterialCommunityIcons>
         </TouchableOpacity>
         <View className="flex-1 items-start">
-          <Text className="font-bold text-lg">{name}</Text>
+          <Text className="font-bold text-lg text-white">{name}</Text>
         </View>
       </View>
       {
@@ -65,7 +65,8 @@ const SectionScreen = () => {
             No hay secciones{" "}
           </Text>
         ) : (
-          <ScrollView className="my-auto">
+          <ScrollView 
+          contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', backgroundColor: '#979ca0' }}>
             {
               subSections.map((subSection,index) => 
               (
@@ -73,9 +74,9 @@ const SectionScreen = () => {
                 key={"s_" + String(index)}
                 onPress={ () => goToInfo(subSection) } 
                 className="rounded-xl border-solid border-4 
-                        border-gray-800 bg-white
+                        border-white bg-slate-900
                         p-2 m-5">
-                <Text className="text-black font-bold text-5xl text-center">
+                <Text className="text-amber-400 font-bold text-5xl text-center">
                   {subSection.name}
                 </Text>
               </TouchableOpacity>

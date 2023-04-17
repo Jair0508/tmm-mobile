@@ -60,7 +60,7 @@ const HomeScreen = () => {
   return (
     <View className="flex-1">
       {/* Header */}
-      <View className="flex-row py-2 items-center space-x-2 bg-slate-200">
+      <View className="flex-row py-2 items-center space-x-2 bg-black">
         <TouchableOpacity
           onPress={openMenu}
           className="bg-slate-100 rounded-full p-2 ml-2 mr-2"
@@ -71,7 +71,7 @@ const HomeScreen = () => {
           ></MaterialCommunityIcons>
         </TouchableOpacity>
         <View className="flex-1 items-start">
-          <Text className="font-bold text-xl">Maquinas</Text>
+          <Text className="font-bold text-xl text-white">MAQUINAS</Text>
         </View>
       </View>
       {/* Body */}
@@ -113,7 +113,7 @@ const HomeScreen = () => {
         }}
       >
         <View
-          className="flex-1 rounded-2xl bg-slate-400 m-auto my-32"
+          className="flex-1 rounded-2xl bg-amber-400 mx-5 my-20"
           style={{
             shadowColor: "#000",
             shadowOffset: {
@@ -126,9 +126,11 @@ const HomeScreen = () => {
           }}
         >
           {/* Header */}
-          <View className="flex-row rounded-t-2xl py-2 items-center space-x-2 bg-slate-200">
-            <View className="flex-1 items-center ml-3">
-              <Text className="font-bold text-2xl">Opciones</Text>
+          <View 
+          className="flex-row rounded-t-2xl py-2 
+                    items-center space-x-2 bg-gray-900">
+            <View className="flex-1 items-center ml-4">
+              <Text className="font-bold text-2xl text-white">OPCIONES</Text>
             </View>
             <TouchableOpacity
               onPress={() => {

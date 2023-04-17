@@ -56,3 +56,28 @@ export const submitForm = createAsyncThunk(
     }
   }
 )
+
+export const sendForm = createAsyncThunk(
+  "form/send",
+  async ({ body }, {rejectWithValue}) => {
+    try {
+      const response = await customAxios.post(
+        `/form/send_responses`,
+         body 
+      );
+      return response.data
+    } catch (error) {
+      if (error.response && error.response.data.detail) {
+        if (error.response.status == 401) {
+          ToastAndroid.show(
+            'Error 401 ',
+            ToastAndroid.LONG
+          )
+        }
+        return rejectWithValue(error.response.data.detail)
+      } else {
+        return rejectWithValue(error.message)
+      }
+    }
+  }
+)

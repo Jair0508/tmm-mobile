@@ -34,7 +34,7 @@ const InfoScreen = () => {
   return (
     <View className="flex-1">
       {/* Header */}
-      <View className="flex-row py-2 items-center space-x-2 bg-slate-200">
+      <View className="flex-row py-2 items-center space-x-2 bg-black">
         <TouchableOpacity
           onPress={backPage}
           className="bg-slate-100 rounded-full p-2 ml-2 mr-2"
@@ -45,7 +45,7 @@ const InfoScreen = () => {
           ></MaterialCommunityIcons>
         </TouchableOpacity>
         <View className="flex-1 items-start">
-          <Text className="font-bold text-lg">{titleInfo}</Text>
+          <Text className="font-bold text-lg text-white">{titleInfo}</Text>
         </View>
       </View>
       {
@@ -57,7 +57,8 @@ const InfoScreen = () => {
             No hay información{" "}
           </Text>
         ) : (
-          <ScrollView>
+          <ScrollView
+          contentContainerStyle={{ backgroundColor: '#979ca0' }}>
             {
             listInfo.map((info, index) => 
             (
@@ -81,8 +82,8 @@ const InfoScreen = () => {
                       <Text className="text-black font-bold text-xl text-center">
                       {info.title}
                       </Text>
-                      <TouchableOpacity className="bg-slate-400 border-blue-600 p-2 m-auto" onPress={() => goToDetail(info)}>
-                        <Text className="text-gray-50">Ver más info</Text>
+                      <TouchableOpacity className="bg-slate-900 border-amber-400 border-4 rounded-xl p-2 m-auto" onPress={() => goToDetail(info)}>
+                        <Text className="text-amber-400">Ver más info</Text>
                       </TouchableOpacity>
                     </View>
                   </View>
@@ -95,8 +96,8 @@ const InfoScreen = () => {
                       <Text className="text-black font-bold text-xl text-center">
                       {info.title}
                       </Text>
-                      <TouchableOpacity className="bg-slate-400 border-blue-600 p-2 m-auto" onPress={() => goToDetail(info)}>
-                        <Text className="text-gray-50">Ver más info</Text>
+                      <TouchableOpacity className="bg-slate-900 border-amber-400 border-4 rounded-xl p-2 m-auto" onPress={() => goToDetail(info)}>
+                        <Text className="text-amber-400">Ver más info</Text>
                       </TouchableOpacity>
                     </View>
                     <View 

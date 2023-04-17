@@ -1,7 +1,7 @@
 import { createDrawerNavigator, DrawerContentScrollView, DrawerItem, DrawerItemList } from "@react-navigation/drawer";
 import { NavigationContainer, } from "@react-navigation/native";
 import React from "react";
-import { Text, Touchable } from "react-native";
+import { Image, Text, Touchable } from "react-native";
 import { TouchableOpacity } from "react-native";
 import { View, StatusBar } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
@@ -43,6 +43,14 @@ const FullStackNavigator = () => {
               style={{ width: 60, height: 60, borderRadius: 30 }}
             />
           </View>*/}
+          <View
+          style={{marginBottom: 5, marginTop: 5 }}>
+            <Text
+            style={{color:'#fbbd00' , fontWeight: '900',
+             textAlign: 'center', fontSize: 25 }}>
+              TMM METALIZADO
+            </Text>
+          </View>
           <DrawerItemList {...props} />
           
         </DrawerContentScrollView>
@@ -57,7 +65,7 @@ const FullStackNavigator = () => {
             }}
             onPress={() => logOut()}>
             <Text style={{ color: 'red' }}>Log Out</Text>
-          </TouchableOpacity>
+        </TouchableOpacity>
       </View>
     )
   }
@@ -66,10 +74,11 @@ const FullStackNavigator = () => {
     <FullStack.Navigator
       drawerContent={props => <CustomDrawerContent {...props}/>}
       screenOptions={{
-        headerShown: false
-        //drawerActiveTintColor: 'white',
-        //drawerInactiveTintColor: 'black',
-        //drawerLabelStyle: { color: 'black' },
+        headerShown: false,
+        drawerActiveTintColor: 'white',
+        drawerActiveBackgroundColor: '#fbbd00',
+        drawerInactiveTintColor: 'black',
+        drawerLabelStyle: { color: 'black' },
         //headerTintColor: 'black',
       }}
     >
@@ -80,13 +89,13 @@ const FullStackNavigator = () => {
         name="Personal" 
         component={PersonalStackNavigator} />
       <FullStack.Screen 
-        name="Calendar" 
+        name="Calendario" 
         component={CalendarStackNavigator} />
       <FullStack.Screen 
         name="Noe" 
         component={NoeStackNavigator} />
       <FullStack.Screen 
-        name="More" 
+        name="Mas" 
         component={MoreInfoStackNavigator} />
     </FullStack.Navigator>
   )
